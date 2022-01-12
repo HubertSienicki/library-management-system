@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="DBTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-01-12T15:30:20" hostname="DESKTOP-NU4JUGF" time="0.455">
+  <properties/>
+  <testcase name="testConnection" classname="DBTest" time="0.455"/>
+  <system-out><![CDATA[Hello
+World
+TEST COMPLETE
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
