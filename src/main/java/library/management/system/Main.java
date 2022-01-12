@@ -6,6 +6,7 @@
 package library.management.system;
 
 import library.management.system.Database.TestDBConnection;
+import library.management.userInterface.StartingPage;
 
 /**
  *
@@ -17,8 +18,8 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        TestDBConnection test = new TestDBConnection();
-        System.out.println(test.returnConnectionConfirmed());
+        StartingPage s = new StartingPage();
+        s.setVisible(true);
     }
     
 }

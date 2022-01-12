@@ -35,6 +35,7 @@ public class TestDBConnection {
             while(execute.next()){
                 System.out.println(execute.getString("name"));
             }
+            conn.close();
             return true;
             
         } catch (SQLException ex) {
