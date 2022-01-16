@@ -6,6 +6,7 @@ package DBTESTS;
  * and open the template in the editor.
  */
 
+import library.management.system.Database.RetrieveEmployeeData;
 import library.management.system.Database.TestDBConnection;
 import library.management.system.Database.checkValidCredentials;
 import library.management.system.Database.retrieveCredentials;
@@ -25,6 +26,8 @@ public class DBTest {
     private checkValidCredentials credCheckTrue;
     private checkValidCredentials credCheckFalse;
     private String[] tempCreds;
+    private RetrieveEmployeeData emp;
+    private String[] empData;
     
     public DBTest() {
     }
@@ -41,6 +44,8 @@ public class DBTest {
         tempCreds = testConnectionRetrieval.returnCredentials(0);
         credCheckTrue = new checkValidCredentials("root", "123");
         credCheckFalse = new checkValidCredentials("admin", "321");
+        emp = new RetrieveEmployeeData();
+        empData = emp.returnEmployeeData("John");
     }
 
 
@@ -69,5 +74,15 @@ public class DBTest {
        assertTrue("Should return TRUE", credCheckTrue.checkValidCredentials());
        assertEquals("Counter should equal 1", 1, credCheckTrue.counter);
        assertFalse("Should return FALSE", credCheckFalse.checkValidCredentials());
+   }
+   
+   @Test
+   public void checkValidEmp(){
+       assertEquals("Employee id should equal 1", "1", empData[0]);
+       assertEquals("First name should equal John", "John", empData[1]);
+       assertEquals("Last name should equal Doe", "Doe", empData[2]);
+       assertEquals("Credentials id should equal 1", "1", empData[3]);
+       assertEquals("Username should equal johndoe", "johndoe", empData[4]);
+       assertEquals("Password should equal 123123", "123123", empData[5]);
    }
 }
