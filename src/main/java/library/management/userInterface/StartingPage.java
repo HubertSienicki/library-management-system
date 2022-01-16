@@ -60,6 +60,11 @@ public class StartingPage extends javax.swing.JFrame {
         usernameField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         usernameField.setText("Username");
         usernameField.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.darkGray));
+        usernameField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                usernameFieldMousePressed(evt);
+            }
+        });
         usernameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usernameFieldActionPerformed(evt);
@@ -71,6 +76,11 @@ public class StartingPage extends javax.swing.JFrame {
         passwordField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         passwordField.setText("Password");
         passwordField.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.darkGray));
+        passwordField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                passwordFieldMouseClicked(evt);
+            }
+        });
 
         loginToggleButton.setBackground(new java.awt.Color(166, 166, 166));
         loginToggleButton.setFont(new java.awt.Font("Rajdhani SemiBold", 1, 14)); // NOI18N
@@ -130,7 +140,7 @@ public class StartingPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void usernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameFieldActionPerformed
-        // TODO add your handling code here:
+        usernameField.setText("");
     }//GEN-LAST:event_usernameFieldActionPerformed
 
     private void loginToggleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginToggleButtonActionPerformed
@@ -148,6 +158,14 @@ public class StartingPage extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_loginToggleButtonActionPerformed
+
+    private void usernameFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usernameFieldMousePressed
+        usernameField.setText("");
+    }//GEN-LAST:event_usernameFieldMousePressed
+
+    private void passwordFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordFieldMouseClicked
+        passwordField.setText("");
+    }//GEN-LAST:event_passwordFieldMouseClicked
 
     public String getUsername(){
         return usernameField.getText();
@@ -183,6 +201,7 @@ public class StartingPage extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new StartingPage().setVisible(true);
             }

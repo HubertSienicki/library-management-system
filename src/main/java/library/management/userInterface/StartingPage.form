@@ -138,6 +138,7 @@
             </Property>
           </Properties>
           <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="usernameFieldMousePressed"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="usernameFieldActionPerformed"/>
           </Events>
         </Component>
@@ -162,6 +163,9 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="passwordFieldMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JToggleButton" name="loginToggleButton">
           <Properties>

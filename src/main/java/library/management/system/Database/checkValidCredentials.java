@@ -52,6 +52,7 @@ public class checkValidCredentials {
                 
                 case 0 -> {
                     JOptionPane.showMessageDialog(null, "There are no associated credentials in the database", "Failure", JOptionPane.ERROR_MESSAGE);
+                    break;
                 }
                 
                 case 1 -> {
@@ -61,7 +62,7 @@ public class checkValidCredentials {
                         return flag;
                     }
                 }
-                case 2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19 -> {
+                default -> {
                     JOptionPane.showMessageDialog(null, "There is a password duplication, please contact the administrator for further details");
                 }
             }
