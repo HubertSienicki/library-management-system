@@ -6,6 +6,7 @@ package DBTESTS;
  * and open the template in the editor.
  */
 
+import library.management.system.Database.ManageLoginStatus;
 import library.management.system.Database.RetrieveEmployeeData;
 import library.management.system.Database.TestDBConnection;
 import library.management.system.Database.checkValidCredentials;
@@ -28,6 +29,7 @@ public class DBTest {
     private String[] tempCreds;
     private RetrieveEmployeeData emp;
     private String[] empData;
+    private ManageLoginStatus loginStatus ;
     
     public DBTest() {
     }
@@ -46,6 +48,7 @@ public class DBTest {
         credCheckFalse = new checkValidCredentials("admin", "321");
         emp = new RetrieveEmployeeData();
         empData = emp.returnEmployeeData("John");
+        loginStatus = new ManageLoginStatus();
     }
 
 
@@ -77,12 +80,22 @@ public class DBTest {
    }
    
    @Test
-   public void checkValidEmp(){
+   public void checkValidEmpData(){
        assertEquals("Employee id should equal 1", "1", empData[0]);
        assertEquals("First name should equal John", "John", empData[1]);
        assertEquals("Last name should equal Doe", "Doe", empData[2]);
        assertEquals("Credentials id should equal 1", "1", empData[3]);
        assertEquals("Username should equal johndoe", "johndoe", empData[4]);
        assertEquals("Password should equal 123123", "123123", empData[5]);
+   }
+   
+   @Test
+   public void checkValidEmpID(){
+       assertEquals("Employee id should equal 1", 1, emp.returnEmpID("johndoe"));
+   }
+   
+   @Test
+   public void checkLoginStatus(){
+       assertTrue("The login method should return true", loginStatus.LogInUser("johndoe"));
    }
 }

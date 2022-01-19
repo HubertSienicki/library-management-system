@@ -59,6 +59,8 @@ public class checkValidCredentials {
                     if(this.password.equals(DBPASSWORD)){
                         flag = true;
                         JOptionPane.showMessageDialog(null, "You have been logged in correctly.");
+//                        ManageLoginStatus login = new ManageLoginStatus();
+//                        login.LogInUser(this.username);
                         return flag;
                     }
                 }

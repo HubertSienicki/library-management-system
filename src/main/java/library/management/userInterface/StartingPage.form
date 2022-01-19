@@ -68,12 +68,8 @@
                           <EmptySpace min="-2" pref="915" max="-2" attributes="0"/>
                           <Component id="loginToggleButton" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="723" max="-2" attributes="0"/>
-                          <Component id="jProgressBar1" min="-2" pref="460" max="-2" attributes="0"/>
-                      </Group>
                   </Group>
-                  <EmptySpace pref="737" max="32767" attributes="0"/>
+                  <EmptySpace pref="855" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -90,9 +86,7 @@
                   <Component id="passwordField" min="-2" pref="35" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   <Component id="loginToggleButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jProgressBar1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="514" max="32767" attributes="0"/>
+                  <EmptySpace pref="546" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -186,8 +180,6 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loginToggleButtonActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JProgressBar" name="jProgressBar1">
         </Component>
       </SubComponents>
     </Container>

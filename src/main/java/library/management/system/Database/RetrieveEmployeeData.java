@@ -44,4 +44,21 @@ public class RetrieveEmployeeData {
             return null;
         }
    }
+    public int returnEmpID(String username){
+        int empID = 0;
+        
+        String sql = "SELECT EMPID FROM EMPLOYEE NATURAL JOIN CREDENTIALS WHERE USERNAME = '" + username + "'";
+        try{
+            Connection conn = DriverManager.getConnection("jdbc:h2:~/lib-DB", "root", "");
+            Statement stmt = conn.createStatement();
+            ResultSet execute = stmt.executeQuery(sql);
+            
+            execute.next();
+            empID = execute.getInt("EMPID");
+            
+        } catch(SQLException e){
+            System.out.println(e);
+        }
+        return empID;
+    }
 }
