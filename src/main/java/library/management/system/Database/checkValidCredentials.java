@@ -48,6 +48,7 @@ public class checkValidCredentials {
         }
         
         System.out.println(counter);
+        System.out.println(DBPASSWORD);
         switch(counter){
                 
                 case 0 -> {
@@ -57,10 +58,10 @@ public class checkValidCredentials {
                 
                 case 1 -> {
                     if(this.password.equals(DBPASSWORD)){
-                        flag = true;
+                        flag = true; 
                         JOptionPane.showMessageDialog(null, "You have been logged in correctly.");
-//                        ManageLoginStatus login = new ManageLoginStatus();
-//                        login.LogInUser(this.username);
+                        ManageLoginStatus login = new ManageLoginStatus();
+                        login.LogInUser(this.username);
                         return flag;
                     }
                 }

@@ -31,13 +31,10 @@ public class ManageLoginStatus {
         try{
             Connection conn = DriverManager.getConnection("jdbc:h2:~/lib-DB", "root", "");
             Statement stmt = conn.createStatement();
-            boolean isFailed = stmt.execute(sql);
-            if(isFailed){
-                return true;
-            }
+            stmt.execute(sql);
             
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null, "The data could not be loaded into the database, please contact the administrator.", "Warning", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "The data could not be loaded into the database, please contact the administrator." + e, "Warning", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         return true;
