@@ -5,12 +5,19 @@
  */
 package library.management.system.Database;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import library.management.system.Scripts.CreateSessionID;
 import library.management.system.Scripts.ReturnTimestamp;
 
 /**
@@ -18,25 +25,53 @@ import library.management.system.Scripts.ReturnTimestamp;
  * @author kneiv
  */
 public class ManageLoginStatus {
+    private String ssid;
+    private final RetrieveEmployeeData emp;
+    private final ReturnTimestamp timestamp;
+    private final String Timestamp;
+    private final CreateSessionID temp;
+    private final String username;
 
-    public ManageLoginStatus() {
+    public ManageLoginStatus(String username) {
+        emp = new RetrieveEmployeeData();
+        timestamp = new ReturnTimestamp(); // Returns the timestamp of logging in
+        Timestamp = timestamp.returnTimestamp();
+        temp = new CreateSessionID(Timestamp, username);
+        this.username = username;
     }
     
-    public boolean LogInUser(String username){
-        RetrieveEmployeeData emp = new RetrieveEmployeeData();
-        ReturnTimestamp timestamp = new ReturnTimestamp();
-        
-        String sql = "INSERT INTO LOGGED_IN VALUES(" + emp.returnEmpID(username) + ", " + true + ", " + "'" + timestamp.returnTimestamp() + "'" + ")";
-        
+    public boolean LogInUser() throws IOException{
+        this.ssid = temp.returnSessionID(); // Current SSID
+        String sql = "INSERT INTO LOGGED_IN VALUES(" + emp.returnEmpID(username) + ", " + true + ", " + "'" + Timestamp + "'" + ", " + "'" + ssid + "'" + ")";
+        System.out.println(sql);
         try{
             Connection conn = DriverManager.getConnection("jdbc:h2:~/lib-DB", "root", "");
             Statement stmt = conn.createStatement();
             stmt.execute(sql);
             
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null, "The data could not be loaded into the database, please contact the administrator." + e, "Warning", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "The data could not be loaded into the database, please contact the administrator. " + e, "Warning", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         return true;
     }
+    
+    public boolean LogOutUser() throws FileNotFoundException, IOException{
+        //Retrieve ssid from a file
+        String ret_ssid;
+        
+        try{
+            Connection conn = DriverManager.getConnection("jdbc:h2:~/lib-DB", "root", "");
+            Statement stmt = conn.createStatement();
+            ret_ssid = temp.retrieveSessionID();
+            String sql = "DELETE FROM LOGGED_IN WHERE SSID = " + "'" + ret_ssid + "';";
+            System.out.println(sql);
+            stmt.executeUpdate(sql);
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "We could not log you out, please contact the administrator. " + e, "Warning", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+        
 }

@@ -6,11 +6,13 @@ package DBTESTS;
  * and open the template in the editor.
  */
 
+import java.io.IOException;
 import library.management.system.Database.ManageLoginStatus;
 import library.management.system.Database.RetrieveEmployeeData;
 import library.management.system.Database.TestDBConnection;
 import library.management.system.Database.checkValidCredentials;
 import library.management.system.Database.retrieveCredentials;
+import library.management.system.Scripts.CreateSessionID;
 import org.junit.Before;
 
 import org.junit.Test;
@@ -30,6 +32,7 @@ public class DBTest {
     private RetrieveEmployeeData emp;
     private String[] empData;
     private ManageLoginStatus loginStatus ;
+    private CreateSessionID retrieveSSID;
     
     public DBTest() {
     }
@@ -48,7 +51,8 @@ public class DBTest {
         credCheckFalse = new checkValidCredentials("admin", "321");
         emp = new RetrieveEmployeeData();
         empData = emp.returnEmployeeData("John");
-        loginStatus = new ManageLoginStatus();
+        loginStatus = new ManageLoginStatus("root");
+        retrieveSSID = new CreateSessionID("2022-03-17 17:07:06", "root");
     }
 
 
@@ -95,7 +99,9 @@ public class DBTest {
    }
    
    @Test
-   public void checkLoginStatus(){
-       assertTrue("The login method should return true", loginStatus.LogInUser("johndoe"));
+   public void checkLoginStatus() throws IOException{
+       assertTrue("The login method should return true", loginStatus.LogInUser());
    }
+   
+  
 }

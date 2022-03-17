@@ -5,6 +5,7 @@
  */
 package library.management.system.Database;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -60,8 +61,13 @@ public class checkValidCredentials {
                     if(this.password.equals(DBPASSWORD)){
                         flag = true; 
                         JOptionPane.showMessageDialog(null, "You have been logged in correctly.");
-                        ManageLoginStatus login = new ManageLoginStatus();
-                        login.LogInUser(this.username);
+                        ManageLoginStatus login = new ManageLoginStatus(this.username);
+                        try{
+                            login.LogInUser();
+                        }catch(IOException e){
+                            System.out.println(e);
+                        }
+                        
                         return flag;
                     }
                 }
