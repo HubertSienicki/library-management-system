@@ -12,8 +12,11 @@ import java.text.SimpleDateFormat;
  *
  * @author kneiv
  */
+
+//Class for handling timestamps for when the user logs in
+
 public class ReturnTimestamp {
-    //TODO: return current timestamp
+
     
     public ReturnTimestamp() {
     }
