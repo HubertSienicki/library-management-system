@@ -10,7 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import library.management.system.Database.ManageLoginStatus;
 import library.management.system.Scripts.CreateSessionID;
-import library.management.system.Scripts.runCurrentClock;
+import library.management.system.Modules.ClockModule;
 
 /**
  *
@@ -18,17 +18,23 @@ import library.management.system.Scripts.runCurrentClock;
  */
 public class MainPage extends javax.swing.JFrame {
 
+    int timeRun = 0;
+    
     /**
      * Creates new form MainPage
      */
     public MainPage() {
         initComponents();
         
-        //TODO: WORKING CLOCK
-        while (true) {
-                    runCurrentClock Clock = new runCurrentClock();
-                    CurrentClock.setText(Clock.getTime());
-        }
+        new Thread(){
+            @Override
+            public void run(){
+                while(timeRun == 0){
+                    ClockModule Time = new ClockModule();
+                    CurrentClock.setText(Time.returnCurrentTime());
+                }
+            }
+        }.start();
     }
 
     /**
