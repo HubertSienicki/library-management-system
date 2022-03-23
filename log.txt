@@ -1,0 +1,2 @@
+
+2022-03-23 14:00:51| User: root Succesfully logged out of the application. | SSID : 20220323140044:root

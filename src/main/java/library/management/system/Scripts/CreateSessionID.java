@@ -27,6 +27,10 @@ public class CreateSessionID {
         this.Timestamp = TimeStamp;
         this.username = username;
     }
+    
+    public CreateSessionID(){
+        
+    }
 
     private void setSessionID(String SessionID) {
         this.SessionID = SessionID;
@@ -57,13 +61,15 @@ public class CreateSessionID {
         }
     }
     
-    public String retrieveSessionID() throws IOException{
+    public String retrieveSessionID(){
         ///get the ssid back from a file
         String tempSSID = "";
         try(BufferedReader reader = new BufferedReader(new FileReader("ssid"))){
             tempSSID = reader.readLine();
             reader.close();
-            return tempSSID;
+        }catch(IOException e){
+            System.out.println(e);
         }
+        return tempSSID;
     }
 }

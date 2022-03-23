@@ -17,7 +17,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import library.management.system.Modules.LoggerModule;
 import library.management.system.Scripts.CreateSessionID;
 import library.management.system.Scripts.ReturnTimestamp;
 
@@ -32,6 +34,7 @@ public class ManageLoginStatus {
     private final String Timestamp;
     private final CreateSessionID temp;
     private final String username;
+    private final LoggerModule logger;
 
     public ManageLoginStatus(String username) {
         emp = new RetrieveEmployeeData();
@@ -39,7 +42,13 @@ public class ManageLoginStatus {
         Timestamp = timestamp.returnTimestamp();
         temp = new CreateSessionID(Timestamp, username);
         this.username = username;
+        logger = new LoggerModule();
     }
+    
+    public String getUsername(){
+        return this.username;
+    }
+  
     
     public boolean LogInUser() throws IOException{
         this.ssid = temp.returnSessionID(); // Current SSID
@@ -49,6 +58,9 @@ public class ManageLoginStatus {
             Connection conn = DriverManager.getConnection("jdbc:h2:~/lib-DB", "root", "");
             Statement stmt = conn.createStatement();
             stmt.execute(sql);
+            
+            //Updating logs
+            logger.Logger_Login_Accepted(this);
             
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, "The data could not be loaded into the database, please contact the administrator. " + e, "Warning", JOptionPane.ERROR_MESSAGE);
@@ -68,6 +80,10 @@ public class ManageLoginStatus {
             String sql = "DELETE FROM LOGGED_IN WHERE SSID = " + "'" + ret_ssid + "';";
             System.out.println(sql);
             stmt.executeUpdate(sql);
+            
+            //Updating logs
+            logger.Logger_Logout_Accepted(this);
+            
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, "We could not log you out, please contact the administrator. " + e, "Warning", JOptionPane.ERROR_MESSAGE);
             return false;

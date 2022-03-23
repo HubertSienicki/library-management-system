@@ -17,11 +17,18 @@ import javax.swing.JOptionPane;
  *
  * @author kneiv
  */
+
+/*
+Class for validating credentials to log in
+*/
 public class checkValidCredentials {
-    private String username;
-    private String password;
+    private final String username;
+    private final String password;
     public int counter;
 
+    /*
+    User info is downloaded from the form
+    */
     public checkValidCredentials(String username, String password) {
         this.username = username;
         this.password = password;

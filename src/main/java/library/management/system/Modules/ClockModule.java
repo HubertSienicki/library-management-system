@@ -40,8 +40,6 @@ public class ClockModule {
             currentTime = hour +":" + String.format("%02d", min) + ":" +  
                     String.format("%02d", sec) + " " + "AM";
         }
-        
-        
     }
     
     public String returnCurrentTime(){
